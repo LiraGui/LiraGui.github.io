@@ -1,220 +1,151 @@
 ---
 layout: post
-title: "10 Boas Práticas de JavaScript Que Todo Desenvolvedor Deveria Conhecer"
-date: 2024-03-10 09:00:00 -0300
-categories: [tutorial, javascript]
-tags: [javascript, boas-praticas, clean-code, programacao]
+title: "Kubernetes Pods: Entendendo o Menor Artefato do Cluster"
+date: 2021-11-07 09:00:00 -0300
+categories: [kubernetes]
+tags: [kubernetes, pods, container, cluster, devops, sre]
 author: Seu Nome
 ---
 
-# 10 Boas Práticas de JavaScript 💻
+# Kubernetes Pods: Entendendo o Menor Artefato do Cluster 💻
 
-JavaScript é uma linguagem poderosa, mas também pode ser problemática se não seguirmos boas práticas. Neste post, compartilho 10 práticas essenciais que melhorarão significativamente seu código.
 
-## 1. Use `const` e `let` ao invés de `var`
+Neste post eu vou tentar destrinchar cada ponto dentro do contexto de um pod, sendo assim vamos ver um pouco de redes, politicas de rede, persistência de dados para pods, exemplos práticos e mais umas coisinhas aí. Esse primeiro post será a parte um de alguns posts sobre Kubernetes que vou soltar por aqui. Esse é a parte 1 sobre pods que eu vou postar.  
 
-❌ **Evite:**
-```javascript
-var nome = "João";
-var idade = 25;
+### $ O que é um pod?
+Um [pod](https://kubernetes.io/docs/concepts/workloads/pods/) nada mais é do que o menor artefato possível de implementação dentro de um cluster Kubernetes. É nele que podemos subir um ou mais containers, compartilhando storage e recursos de rede.
+
+Cada container em um pod executa no próprio [cgroup](https://en.wikipedia.org/wiki/Cgroups), mas eles compartilham alguns [namespaces](https://en.wikipedia.org/wiki/Linux_namespaces).
+
+Uma característica interessante dos pods, é que eles foram criados para serem efêmeros, sendo assim quando um pod cai ele automaticamente é iniciado novamente.
+
+Podemos subir um pod de duas maneiras, usando um manifesto (.yaml) ou por linha de comando, para faze-lo é preciso ter um ambiente com um cluster k8s rodando com [kind](https://kind.sigs.k8s.io/docs/user/quick-start/), [minikube](https://minikube.sigs.k8s.io/docs/start/) ou de outro modo. Tendo nosso cluster rodando e com o kubectl, kubelet, e o kubeadm instalados, podemos subir um pod somente pela linha de comando, basta executarmos o comando:
+
+```sh
+alias k=kubectl
+# Como exemplo vou subir um pod com um container NGINX
+k run nginx --image=nginx
 ```
 
-✅ **Prefira:**
-```javascript
-const nome = "João";
-let idade = 25;
+Para saber se seu container subiu é so rodar o comando:
+
+```sh
+k get pods
+
+# Ele vai retornar algo como
+NAME        READY      STATUS       RESTARTS        AGE
+nginx       1/1        Running      0               8m54s
+
 ```
 
-**Por quê?** `const` e `let` têm escopo de bloco, evitando problemas de hoisting e redeclarações acidentais.
+Caso você queira saber mais sobre seu pod, como quais containers estão rodando nele, dados de rede, condições do seu pod, volumes e mais alguns dados, é so executar o comando:
 
-## 2. Use Template Literals
-
-❌ **Evite:**
-```javascript
-const mensagem = "Olá, " + nome + "! Você tem " + idade + " anos.";
+```sh
+k describe pod ${nome do pod}
 ```
 
-✅ **Prefira:**
-```javascript
-const mensagem = `Olá, ${nome}! Você tem ${idade} anos.`;
+Conseguimos subir um pod somente com o nosso **kubectl run**, agora vamos subir o mesmo pod com uma manifesto. O manifesto que nada mais é do que um arquivo yaml ou json, mas o que é geralmente mais usado é o yaml. Com o nosso manifesto e tendo as configurações necessárias conseguimos deployar qualquer objeto que a API do Kubernetes consiga criar, inclusive o pod.
+
+No manifesto de um pod estão inclusos alguns campos e atributos essenciais para o deploy do nosso pod, como:
+- Uma seção de **metadata** que descreve o Pod e seus rótulos. Rótulos esse
+- Outra seção de **spec** para descrever os volumes
+
+```yaml
+apiVersion: v1
+# kind será o valor do tipo de objeto que vamos criar 
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    # O label é muito importante pois é por ele que outros objetos podem achar nosso pod
+    name: myapp
+spec:
+  containers:
+  - name: pod-learn
+    image: nginx
+    resources:
+      # limits delimita o limite de CPI e memory do nosso container
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
 ```
 
-**Por quê?** Template literals são mais legíveis e permitem expressões dentro das strings.
+E para subir um pod a partir de um manifesto é so executar o comando:
 
-## 3. Destructuring de Objetos e Arrays
-
-❌ **Evite:**
-```javascript
-const nome = usuario.nome;
-const email = usuario.email;
-const idade = usuario.idade;
+```sh
+k apply -f ${nome do arquivo}.yaml
 ```
 
-✅ **Prefira:**
-```javascript
-const { nome, email, idade } = usuario;
+
+### $ Como usa-lo ?
+Ao usar manifestos o Pod pode ser usado de maneiras diferentes, por objetos diferentes, como:
+- Deployment
+- Job
+- DeamonSet
+
+Vamos entender como funciona um pouquinho cada um desses carinhas
+
+~> Deployment
+
+- O objeto Deployment é uma das maneira de usar um Pod. Ao criar um deployment, o k8s cria juntamente com o pod, um `ReplicaSet`. O Deployment existe para gerenciar o lançamento de versões. Como esse post não é focado em Deployments, por isso não vou me estender sobre ele. 
+- ReplicaSets  
+  - Os ReplicaSets, são os responsáveis por controlar e manter a quantidade de réplicas que estabelecidas para o nosso deployment. E esses pods são identificados pela metadata pertencente ao deployment.  
+  - A quantidade de réplicas são ditas na hora da criação do deployment.  
+
+Aqui está um exemplo de como criar um Deployment
+```yaml
+  # Exemplo coletado no https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: nginx-deployment
+    labels:
+      app: nginx
+  spec:
+    # Replicas é a quantidade de réplicas que o ReplicaSet vai levantar e manter
+    replicas: 3
+    selector:
+      matchLabels:
+        app: nginx
+    template:
+      metadata:
+        labels:
+          app: nginx
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+          - containerPort: 80    
 ```
 
-**Por quê?** Destructuring torna o código mais conciso e expressivo.
+~> DeamonSet  
+- Quando falamos de DeamonSets, vem na cabeço os processos que rodam no seu linux do tipo daemon, são processos que rodam em background, e assim que seu sistema é iniciado eles são iniciados também. Como um serviço do mysql, docker e por ai vai.  
+- E não é muito diferente aqui no nosso Kubernetes, ao subir o DeamonSet, um pod vai rodar em "background" em um, em mais de um ou em todos os nodes do seu cluster. Com isso podemos usa-lo para subir um pod com prometheus por exemplo, para fazer a parte de monitoramento do cluster.
+- E para entender mais de como funciona esse tal do DeamonSet é só olhar a doc oficial do Kubernetes sobre [DEAMONSETS](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)  
 
-## 4. Arrow Functions
+~> Job  
+- O Pod também é usado quando subimos um objeto do tipo Job. O Job é responsável por criar e gerenciar Pods definidos em um template na especificação do job. Em geral, esses Pods executam até serem concluídos com sucesso, caso aconteça uma falha o controlador do job vai levantar outro pod, com base no template do pod presente.  
+- Para entender mais sobre, como funcionam os jobs, basta olhar na doc oficial do Kubernetes sobre [JOBS](https://kubernetes.io/docs/concepts/workloads/controllers/job/)   
 
-❌ **Evite:**
-```javascript
-const dobrar = function(x) {
-  return x * 2;
-};
-```
+Agora que conseguimos subir um pod, vamos entender de que maneiras podemos usar esse pod
 
-✅ **Prefira:**
-```javascript
-const dobrar = (x) => x * 2;
-```
+### $ Como funciona a comunicação entre pods?
 
-**Por quê?** Arrow functions são mais concisas e mantêm o contexto do `this`.
+Os pods podem se comunicar facilmente tanto estando no mesmo node, quando em nodes diferentes, isso por causa de que cada pod recebe um ip ao ser criado. Porém não é muito inteligente usar o ip do pod criado, para fazer a conexão entre dois pods, pois os pods foram feitos para serem efêmeros, sendo assim, toda vez que um pod for derrubado e levantado em seguida, ele vai receber um novo ip, assim perdendo a conexão entre os pods.  
 
-## 5. Use Spread Operator
+Para mantermos esta conexão podemos apontar um service para o pod ou para um deployment, assim não vamos perder a conexão entre os pods. A comunicação dentro do cluster por hostname, só é possível através do servidor DNS que roda como um serviço Kubernetes. Podemos fazer a comunicação da seguinte maneira:  
+  - Namespace default ~> `{serviceName}.svc.cluster.local`
+  - Em outro namespace ~> `{serviceName}.{namespaceName}.svc.cluster.local`
 
-❌ **Evite:**
-```javascript
-const novoArray = array1.concat(array2);
-const novoObjeto = Object.assign({}, objeto1, objeto2);
-```
+Dessa maneira é possível fazer a comunicação entre pods, tanto no mesmo node, quanto em node diferentes. Para que tudo isso funcione, é preciso que no seu cluster tenha instalado ou o `kube-dns`, que é o serviço de DNS nativo do k8s, ou configurar o core dns como o serviço de dns principal do seu cluster, vou deixar alguns links no final do artigo para quem quiser fazer a configuração.  
 
-✅ **Prefira:**
-```javascript
-const novoArray = [...array1, ...array2];
-const novoObjeto = { ...objeto1, ...objeto2 };
-```
-
-**Por quê?** Mais limpo e intuitivo para copiar e mesclar dados.
-
-## 6. Async/Await ao Invés de Callbacks
-
-❌ **Evite:**
-```javascript
-buscarUsuario(id, function(erro, usuario) {
-  if (erro) {
-    console.error(erro);
-  } else {
-    buscarPosts(usuario.id, function(erro, posts) {
-      // callback hell...
-    });
-  }
-});
-```
-
-✅ **Prefira:**
-```javascript
-try {
-  const usuario = await buscarUsuario(id);
-  const posts = await buscarPosts(usuario.id);
-} catch (erro) {
-  console.error(erro);
-}
-```
-
-**Por quê?** Código mais legível e fácil de manter.
-
-## 7. Optional Chaining
-
-❌ **Evite:**
-```javascript
-const rua = usuario && usuario.endereco && usuario.endereco.rua;
-```
-
-✅ **Prefira:**
-```javascript
-const rua = usuario?.endereco?.rua;
-```
-
-**Por quê?** Evita erros ao acessar propriedades de objetos que podem ser `null` ou `undefined`.
-
-## 8. Nullish Coalescing
-
-❌ **Evite:**
-```javascript
-const nome = usuario.nome || "Anônimo";
-```
-
-✅ **Prefira:**
-```javascript
-const nome = usuario.nome ?? "Anônimo";
-```
-
-**Por quê?** `??` só usa o valor padrão se for `null` ou `undefined`, não para valores falsy como `0` ou `""`.
-
-## 9. Use Array Methods
-
-❌ **Evite:**
-```javascript
-const pares = [];
-for (let i = 0; i < numeros.length; i++) {
-  if (numeros[i] % 2 === 0) {
-    pares.push(numeros[i]);
-  }
-}
-```
-
-✅ **Prefira:**
-```javascript
-const pares = numeros.filter(num => num % 2 === 0);
-```
-
-**Por quê?** Methods como `map`, `filter`, `reduce` são mais expressivos e funcionais.
-
-## 10. Evite Mutações
-
-❌ **Evite:**
-```javascript
-const usuario = { nome: "João" };
-usuario.idade = 25; // mutação
-```
-
-✅ **Prefira:**
-```javascript
-const usuario = { nome: "João" };
-const usuarioAtualizado = { ...usuario, idade: 25 };
-```
-
-**Por quê?** Imutabilidade facilita debugging e previne efeitos colaterais.
-
-## 🎯 Bônus: Use ESLint
-
-Configure ESLint no seu projeto para automatizar a verificação de boas práticas:
-
-```bash
-npm install --save-dev eslint
-npx eslint --init
-```
-
-Exemplo de `.eslintrc.json`:
-```json
-{
-  "extends": "eslint:recommended",
-  "env": {
-    "es6": true,
-    "node": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2021
-  }
-}
-```
-
-## 📚 Recursos para Aprender Mais
-
-- [MDN Web Docs](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-- [JavaScript.info](https://javascript.info/)
-- [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)
-- [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
-
-## 🎊 Conclusão
-
-Seguir essas boas práticas tornará seu código mais limpo, manutenível e profissional. Comece implementando uma prática por vez e, com o tempo, elas se tornarão naturais.
-
-Qual dessas práticas você já usa? Deixe nos comentários!
-
----
-
-*Achou útil? Compartilhe com outros desenvolvedores JavaScript!*
+### $ Conclusão  
+  
+Neste post conseguimos entender um pouco sobre o Pod, entendemos um pouco de o que é um pod, maneiras diferentes de como outros objetos do kubernetes usam ele e também uma breve passagem sobre a comunicação entre pods.  
+Na parte dois desse post, vou falar mais e adentrar mais sobre a network entre pods, e persistência de dados para um pod.  
+Agradeço quem leu todo o post, ressaltando que esse post é uma via de estudo que eu encontrei, e decidi, compartilhar com qualquer um que queira entender um pouco de Kubernetes assim como eu.  
+  
+Até o próximo post!!!
