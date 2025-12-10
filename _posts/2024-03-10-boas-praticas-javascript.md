@@ -12,7 +12,7 @@ author: Seu Nome
 
 Neste post eu vou tentar destrinchar cada ponto dentro do contexto de um pod, sendo assim vamos ver um pouco de redes, politicas de rede, persistência de dados para pods, exemplos práticos e mais umas coisinhas aí. Esse primeiro post será a parte um de alguns posts sobre Kubernetes que vou soltar por aqui. Esse é a parte 1 sobre pods que eu vou postar.  
 
-### $ O que é um pod?
+### O que é um pod?
 Um [pod](https://kubernetes.io/docs/concepts/workloads/pods/) nada mais é do que o menor artefato possível de implementação dentro de um cluster Kubernetes. É nele que podemos subir um ou mais containers, compartilhando storage e recursos de rede.
 
 Cada container em um pod executa no próprio [cgroup](https://en.wikipedia.org/wiki/Cgroups), mas eles compartilham alguns [namespaces](https://en.wikipedia.org/wiki/Linux_namespaces).
@@ -79,7 +79,7 @@ k apply -f ${nome do arquivo}.yaml
 ```
 
 
-### $ Como usa-lo ?
+### Como usa-lo ?
 Ao usar manifestos o Pod pode ser usado de maneiras diferentes, por objetos diferentes, como:
 - Deployment
 - Job
@@ -132,7 +132,7 @@ Aqui está um exemplo de como criar um Deployment
 
 Agora que conseguimos subir um pod, vamos entender de que maneiras podemos usar esse pod
 
-### $ Como funciona a comunicação entre pods?
+### Como funciona a comunicação entre pods?
 
 Os pods podem se comunicar facilmente tanto estando no mesmo node, quando em nodes diferentes, isso por causa de que cada pod recebe um ip ao ser criado. Porém não é muito inteligente usar o ip do pod criado, para fazer a conexão entre dois pods, pois os pods foram feitos para serem efêmeros, sendo assim, toda vez que um pod for derrubado e levantado em seguida, ele vai receber um novo ip, assim perdendo a conexão entre os pods.  
 
@@ -142,7 +142,7 @@ Para mantermos esta conexão podemos apontar um service para o pod ou para um de
 
 Dessa maneira é possível fazer a comunicação entre pods, tanto no mesmo node, quanto em node diferentes. Para que tudo isso funcione, é preciso que no seu cluster tenha instalado ou o `kube-dns`, que é o serviço de DNS nativo do k8s, ou configurar o core dns como o serviço de dns principal do seu cluster, vou deixar alguns links no final do artigo para quem quiser fazer a configuração.  
 
-### $ Conclusão  
+### Conclusão  
   
 Neste post conseguimos entender um pouco sobre o Pod, entendemos um pouco de o que é um pod, maneiras diferentes de como outros objetos do kubernetes usam ele e também uma breve passagem sobre a comunicação entre pods.  
 Na parte dois desse post, vou falar mais e adentrar mais sobre a network entre pods, e persistência de dados para um pod.  
