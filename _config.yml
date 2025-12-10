@@ -1,0 +1,63 @@
+# Configurações do Site
+title: Meu Blog & Portfólio
+description: Personal blog and portfolio
+author: Guilherme Lira
+email: liraguilherme252@gmail.com
+
+# URL do site (substitua pelo seu username do GitHub)
+baseurl: "" # deixe vazio se o repo for username.github.io
+url: "https://LiraGui.github.io" # substitua 'username' pelo seu username do GitHub
+
+# Tema do Jekyll
+theme: minima
+
+# Configurações do tema Minima
+minima:
+  skin: dark # opções: auto, classic, dark, solarized, solarized-dark
+  social_links:
+    - platform: github
+      user_url: "https://github.com/LiraGui"
+    - platform: linkedin
+      user_url: "https://linkedin.com/in/LiraGui"
+
+# Navegação
+header_pages:
+  - index.md
+  - about.md
+  - portfolio.md
+  - blog.md
+
+# Configurações de posts
+permalink: /blog/:year/:month/:day/:title/
+paginate: 5
+paginate_path: "/blog/page:num/"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Excluir arquivos do build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - LICENSE
+
+# Configurações SEO
+lang: pt-BR
+timezone: America/Sao_Paulo
+
+# Google Analytics (opcional)
+# google_analytics: UA-XXXXXXXXX-X
+
+# Disqus (opcional)
+# disqus:
+#   shortname: seu-shortname-disqus

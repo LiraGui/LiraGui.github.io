@@ -1,59 +1,258 @@
-<header>
+# 📝 Meu Blog & Portfólio
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+Blog pessoal e portfólio desenvolvido com Jekyll e hospedado no GitHub Pages.
 
-# GitHub Pages
+## 🚀 Sobre o Projeto
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+Este repositório contém o código-fonte do meu site pessoal, que funciona como:
+- **Blog**: Para compartilhar artigos sobre tecnologia, programação e desenvolvimento
+- **Portfólio**: Para showcasear projetos e trabalhos
 
-</header>
+## 🛠️ Tecnologias Utilizadas
 
-<!--
-  <<< Author notes: Step 2 >>>
-  Start this step by acknowledging the previous step.
-  Define terms and link to docs.github.com.
-  Historic note: previous version checked for empty pull request, changed to the correct theme `minima`.
--->
+- **Jekyll 4.3**: Gerador de sites estáticos
+- **Minima Theme**: Tema minimalista e responsivo
+- **GitHub Pages**: Hospedagem gratuita
+- **Markdown**: Para escrita de conteúdo
+- **Liquid**: Template engine
 
-## Step 2: Configure your site
+## 📋 Pré-requisitos
 
-_You turned on GitHub Pages! :tada:_
+Para rodar o projeto localmente, você precisa ter instalado:
 
-We'll work in a branch, `my-pages`, that I created for you to get this site looking great. :sparkle:
+- Ruby (versão 2.7 ou superior)
+- RubyGems
+- GCC e Make
 
-Jekyll uses a file titled `_config.yml` to store settings for your site, your theme, and reusable content like your site title and GitHub handle. You can check out the `_config.yml` file on the **Code** tab of your repository.
+### Instalação no macOS
 
-We need to use a blog-ready theme. For this activity, we will use a theme named "minima".
+```bash
+# Instalar Ruby via Homebrew
+brew install ruby
 
-### :keyboard: Activity: Configure your site
+# Adicionar ao PATH (adicione ao seu ~/.zshrc ou ~/.bash_profile)
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+```
 
-1. Browse to the `_config.yml` file in the `my-pages` branch.
-1. In the upper right corner, open the file editor.
-1. Add a `theme:` set to **minima** so it shows in the `_config.yml` file as below:
-   ```yml
-   theme: minima
-   ```
-1. (optional) You can modify the other configuration variables such as `title:`, `author:`, and `description:` to further customize your site.
-1. Commit your changes.
-1. (optional) Create a pull request to view all the changes you'll make throughout this course. Click the **Pull Requests** tab, click **New pull request**, set `base: main` and `compare:my-pages`.
-1. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
+### Instalação no Linux (Ubuntu/Debian)
 
-<footer>
+```bash
+sudo apt-get install ruby-full build-essential zlib1g-dev
 
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
+# Configurar gems no diretório do usuário
+echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
+echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
+echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+## 🔧 Instalação e Configuração
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/seu-usuario/lira-blog.git
+cd lira-blog
+```
+
+### 2. Instale as dependências
+
+```bash
+gem install bundler
+bundle install
+```
+
+### 3. Configure o `_config.yml`
+
+Edite o arquivo `_config.yml` e personalize com suas informações:
+
+```yaml
+title: Seu Nome
+description: Sua descrição
+author: Seu Nome
+email: seu.email@example.com
+url: "https://seu-usuario.github.io"
+```
+
+Atualize também os links das redes sociais.
+
+### 4. Execute localmente
+
+```bash
+bundle exec jekyll serve
+```
+
+Acesse: `http://localhost:4000`
+
+Para recarregar automaticamente ao fazer mudanças:
+
+```bash
+bundle exec jekyll serve --livereload
+```
+
+## 📁 Estrutura do Projeto
+
+```
+lira-blog/
+├── _config.yml          # Configurações do site
+├── _posts/              # Posts do blog (formato: YYYY-MM-DD-titulo.md)
+├── _site/               # Site gerado (não versionado)
+├── assets/              # Imagens, CSS, JS
+│   └── css/
+│       └── style.scss   # Estilos personalizados
+├── index.md             # Página inicial
+├── about.md             # Página sobre
+├── portfolio.md         # Página de portfólio
+├── blog.md              # Página do blog
+├── Gemfile              # Dependências Ruby
+└── README.md            # Este arquivo
+```
+
+## ✍️ Criando Posts
+
+### 1. Crie um novo arquivo em `_posts/`
+
+Nome do arquivo: `YYYY-MM-DD-titulo-do-post.md`
+
+Exemplo: `2024-03-15-meu-primeiro-post.md`
+
+### 2. Adicione o front matter
+
+```markdown
+---
+layout: post
+title: "Título do Seu Post"
+date: 2024-03-15 10:00:00 -0300
+categories: [categoria1, categoria2]
+tags: [tag1, tag2, tag3]
+author: Seu Nome
+---
+
+Conteúdo do seu post em Markdown...
+```
+
+### 3. Escreva o conteúdo em Markdown
+
+Use Markdown para formatar o texto, adicionar imagens, links, código, etc.
+
+## 🎨 Personalizações
+
+### CSS Customizado
+
+Edite `assets/css/style.scss` para personalizar a aparência do site.
+
+### Adicionar Páginas
+
+Crie novos arquivos `.md` na raiz com front matter:
+
+```markdown
+---
+layout: page
+title: Título da Página
+permalink: /url-da-pagina/
+---
+
+Conteúdo...
+```
+
+## 🚀 Deploy no GitHub Pages
+
+### 1. Crie um repositório no GitHub
+
+Nome sugerido: `seu-usuario.github.io` (para site principal) ou qualquer outro nome.
+
+### 2. Configure GitHub Pages
+
+1. Vá em **Settings** > **Pages**
+2. Em **Source**, selecione a branch `main` (ou `master`)
+3. Clique em **Save**
+
+### 3. Push para o repositório
+
+```bash
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/seu-usuario/seu-repositorio.git
+git push -u origin main
+```
+
+### 4. Acesse seu site
+
+- Se o repositório for `seu-usuario.github.io`: `https://seu-usuario.github.io`
+- Caso contrário: `https://seu-usuario.github.io/nome-do-repositorio`
+
+## 📝 Dicas
+
+### Testar antes de publicar
+
+```bash
+bundle exec jekyll build
+bundle exec jekyll serve --drafts
+```
+
+### Criar rascunhos
+
+Crie arquivos em `_drafts/` (sem data no nome) para posts em desenvolvimento.
+
+### Ver posts futuros
+
+```bash
+bundle exec jekyll serve --future
+```
+
+### Limpar o cache
+
+```bash
+bundle exec jekyll clean
+```
+
+## 🐛 Troubleshooting
+
+### Erro: `cannot load such file -- webrick`
+
+```bash
+bundle add webrick
+```
+
+### Problemas com permissões
+
+```bash
+sudo gem install bundler
+```
+
+### Site não atualiza no GitHub Pages
+
+- Aguarde alguns minutos (pode levar até 10 minutos)
+- Verifique a aba **Actions** do repositório para ver o status do build
+- Certifique-se de que o `_config.yml` está correto
+
+## 📚 Recursos
+
+- [Jekyll Documentation](https://jekyllrb.com/docs/)
+- [GitHub Pages Documentation](https://docs.github.com/en/pages)
+- [Minima Theme](https://github.com/jekyll/minima)
+- [Markdown Guide](https://www.markdownguide.org/)
+- [Liquid Template Language](https://shopify.github.io/liquid/)
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👤 Autor
+
+**Seu Nome**
+
+- GitHub: [@seu-usuario](https://github.com/seu-usuario)
+- LinkedIn: [seu-perfil](https://linkedin.com/in/seu-perfil)
+- Email: seu.email@example.com
+
+## 🤝 Contribuições
+
+Contribuições, issues e pull requests são bem-vindos!
 
 ---
 
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
+⭐ Se este projeto foi útil, considere dar uma estrela!
 
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
+**Feito com ❤️ usando Jekyll e GitHub Pages**

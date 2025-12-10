@@ -35,3 +35,25 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Jekyll #
+##########
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+
+# Ruby #
+########
+*.gem
+.bundle
+Gemfile.lock
+
+# IDE #
+#######
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
