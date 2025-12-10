@@ -4,7 +4,7 @@ title: "Kubernetes Pods: Entendendo o Menor Artefato do Cluster"
 date: 2021-11-07 09:00:00 -0300
 categories: [kubernetes]
 tags: [kubernetes, pods, container, cluster, devops, sre]
-author: Seu Nome
+author: Guilherme Lira
 ---
 
 # Kubernetes Pods: Entendendo o Menor Artefato do Cluster 💻
