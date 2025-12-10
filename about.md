@@ -4,12 +4,6 @@ title: Sobre
 permalink: /about/
 ---
 
----
-layout: page
-title: Sobre
-permalink: /about/
----
-
 # Sobre Mim
 
 Olá! 👋 Meu nome é **Guilherme Lira** e sou **Site Reliability Engineer (SRE)** apaixonado por desafios e inovação.
