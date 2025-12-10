@@ -1,5 +1,5 @@
 # Configurações do Site
-title: Meu Blog & Portfólio
+title: Guilherme Lira
 description: Personal blog and portfolio
 author: Guilherme Lira
 email: liraguilherme252@gmail.com
@@ -18,7 +18,7 @@ minima:
     - platform: github
       user_url: "https://github.com/LiraGui"
     - platform: linkedin
-      user_url: "https://linkedin.com/in/LiraGui"
+      user_url: "www.linkedin.com/in/guilhermelirasilva"
 
 # Navegação
 header_pages:
