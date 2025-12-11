@@ -9,10 +9,10 @@ baseurl: "" # deixe vazio se o repo for username.github.io
 url: "https://LiraGui.github.io" # substitua 'username' pelo seu username do GitHub
 
 # Tema do Jekyll
-theme: medium
+theme: mediumish-theme-jekyll
 
 # Configurações do tema
-medium:
+mediumish-theme-jekyll:
   skin: dark # opções: auto, classic, dark, solarized, solarized-dark
   social_links:
     - platform: github
