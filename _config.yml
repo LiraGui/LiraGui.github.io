@@ -1,5 +1,5 @@
 # Site
-name: "Mediumish"
+name: "Guilherme Lira"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 google_analytics: 'UA-46278016-1'
@@ -9,7 +9,7 @@ include: ["_pages"]
 permalink: /:title/
 
 title: Guilherme Lira
-description: Personal blog and portfolio
+description: Technical blog and portfolio
 author: Guilherme Lira
 email: liraguilherme252@gmail.com
 baseurl: "" # deixe vazio se o repo for username.github.io
