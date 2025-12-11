@@ -8,7 +8,7 @@ author: guilherme
 image: assets/images/4.jpg
 ---
 
-#### Custos em clusters em cloud
+#### Custos de clusters em cloud
 
 Bom, não é novidade pra ninguém que você ter um cluster dentro de uma cloud pública da vida (AWS, GCP, Azure, IBM), tem suas vantagens, mas também não é de graça. O custo de um cluster simples/pequeno em uma cloud pública, pode chegar quase na casa dos R$ 1.000,00 se você somar tudo, que seria algo mais ou menos assim: 
 
@@ -108,10 +108,10 @@ spec:
 Vou te mostrar com um exemplo de uma calculadora da GCP o quanto tu consegue reduzir somente mudando pra spot intance.
 
 **Custo com node On Demand:**
-![Custo com node On Demand](assets/images/Screenshot 2025-12-11 at 15.27.09.png)
+![Custo com node On Demand](assets/images/post-3-ondemand.png)
 
 **Custo com nodes Spot:**
-![Custo com nodes Spot](assets/images/Screenshot 2025-12-11 at 15.27.25.png)
+![Custo com nodes Spot](assets/images/post-3-spot.png)
 
 Somente com essa mudança tem um savings de $ 1,243.69 ou seja mais de 70% de economia no seu cluster. 
 
@@ -120,4 +120,4 @@ Somente com essa mudança tem um savings de $ 1,243.69 ou seja mais de 70% de ec
 Em caso de utilizar nodes spot ou até mesmo sobdemanda. Mas essa dica é precisamente para nodes spot. Distribua seus nodes spot por diferentes AZs e com diferentes instace types. Dessa maneira vai ser mais difícil você ter todos os seus nodes spot indisponíveis, quando uma zona estver cheia e um node seu cair, em outra zona pode estar normal. Diferente de uma estratégia de jogar tudo em uma única AZ, desse maneira todos os seus nodes podem ficar indisponíveis ao mesmo tempo.
 
 
-Bom, creio que é isso 
+Bom, creio que é isso pessoal, até o próximo post!
