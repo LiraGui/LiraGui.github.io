@@ -108,10 +108,10 @@ spec:
 Vou te mostrar com um exemplo de uma calculadora da GCP o quanto tu consegue reduzir somente mudando pra spot intance.
 
 **Custo com node On Demand:**
-![Custo com node On Demand](assets/images/post-3-ondemand.png)
+![Image description](assets/images/post-3-ondemand.png)
 
 **Custo com nodes Spot:**
-![Custo com nodes Spot](assets/images/post-3-spot.png)
+![Image description](assets/images/post-3-spot.png)
 
 Somente com essa mudança tem um savings de $ 1,243.69 ou seja mais de 70% de economia no seu cluster. 
 
