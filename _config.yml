@@ -14,6 +14,8 @@ author: Guilherme Lira
 email: liraguilherme252@gmail.com
 baseurl: "" # deixe vazio se o repo for username.github.io
 url: "https://LiraGui.github.io" # substitua 'username' pelo seu username do GitHub
+avatar: "assets/images/image.png"
+display_name: "Guilherme Lira"
 
 
 plugins:
