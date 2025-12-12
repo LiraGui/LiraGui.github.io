@@ -5,7 +5,7 @@ date: 2025-12-11 00:00:00 -0300
 categories: [kubernetes]
 tags: [kubernetes, spot, nodes, cloud]
 author: guilherme
-image: assets/images/4.jpg
+image: assets/images/Gemini_Generated_Image_2z8un72z8un72z8u.png
 ---
 
 #### Custos de clusters em cloud

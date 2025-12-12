@@ -5,7 +5,7 @@ date: 2024-04-05 14:30:00 -0300
 categories: [docker, kubernetes, container]
 tags: [kubernetes]
 author: guilherme
-image: assets/images/8.jpg
+image: assets/images/Gemini_Generated_Image_4i1kby4i1kby4i1k.png
 ---
 
 # O que danado é um pod?
