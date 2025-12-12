@@ -6,6 +6,7 @@ categories: [kubernetes]
 tags: [kubernetes, spot, nodes, cloud]
 author: guilherme
 image: assets/images/post-3-savings-spot.png
+featured: true
 ---
 
 #### Custos de clusters em cloud
