@@ -10,7 +10,7 @@ comments: false
 
 <h4>Sobre Mim</h4>
 
-<p>Olá! Meu nome é <strong>Guilherme Lira</strong> e sou <strong>Site Reliability Engineer (SRE)</strong> louco por um desafio que me faça varar a madrugada quebrando a cabeça (hahahah).</p>
+<p>Olá! Meu nome é <strong>Guilherme Lira</strong> e sou <strong>Site Reliability Engineer (SRE)</strong>, louco por um desafio que me faça varar a madrugada quebrando a cabeça (hahahah).</p>
 
 <p>Tenho 25 anos e atuo com foco em Cloud Computing, automação de processos, DevOps e observabilidade. Certificado AWS, trago experiência prática em arquitetura de sistemas resilientes e escaláveis, sempre buscando melhorar a eficiência, confiabilidade e por quê não savings, dos ambientes digitais.</p>
 
