@@ -10,9 +10,9 @@ comments: false
 
 <h4>Sobre Mim</h4>
 
-<p>Olá! Meu nome é <strong>Guilherme Lira</strong> e sou <strong>Site Reliability Engineer (SRE)</strong> apaixonado por desafios e inovação.</p>
+<p>Olá! Meu nome é <strong>Guilherme Lira</strong> e sou <strong>Site Reliability Engineer (SRE)</strong> louco por um desafio que me faça varar a madrugada quebrando a cabeça (hahahah).</p>
 
-<p>Tenho 25 anos e atuo com foco em Cloud Computing, automação de processos, DevOps e observabilidade. Certificado AWS, trago experiência prática em arquitetura de sistemas resilientes e escaláveis, sempre buscando melhorar a eficiência e confiabilidade dos ambientes digitais.</p>
+<p>Tenho 25 anos e atuo com foco em Cloud Computing, automação de processos, DevOps e observabilidade. Certificado AWS, trago experiência prática em arquitetura de sistemas resilientes e escaláveis, sempre buscando melhorar a eficiência, confiabilidade e por quê não savings, dos ambientes digitais.</p>
 
 <p>Compartilho conhecimento através de artigos técnicos no <a href="https://dev.to/lirinha" target="_blank" rel="noopener">Dev.to</a>.</p>
 
@@ -64,7 +64,7 @@ comments: false
 
 <h4>Foco Atual</h4>
 
-<p>Atualmente estou focado em aprimorar práticas de SRE em ambientes GCP, explorando técnicas avançadas de otimização de custos, segurança em cloud e arquiteturas serverless. Busco constantemente contribuir com a comunidade através de artigos técnicos e compartilhamento de experiências.</p>
+<p>Atualmente estou focado em aprimorar práticas de SRE em ambientes GCP e evangelizando outras pessoal na cultura DevOps, otimizando custos, provendo segurança em cloud e arquiteturas serverless. Busco constantemente contribuir com a comunidade através de artigos técnicos e compartilhamento de experiências.</p>
 
 <h4>Contato</h4>
 
@@ -75,7 +75,7 @@ comments: false
     <li><strong>Blog</strong>: <a href="https://dev.to/lirinha" target="_blank" rel="noopener">dev.to/lirinha</a></li>
 </ul>
 
-<p><em>Última atualização: Dezembro 2024</em></p>
+<p><em>Última atualização: Dezembro 2025</em></p>
 
 </div>
 
