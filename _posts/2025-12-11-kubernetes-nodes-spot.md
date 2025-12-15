@@ -20,6 +20,7 @@ Em cima desse cálculo, conseguimos exugar o custo quando utilizamos o provision
 - Provedores de nuvem precisam manter capacidade de reserva disponível para atender a qualquer aumento na demanda dos clientes [Google](https://docs.cloud.google.com/compute/docs/instances/spot)
 - Servidores físicos que não estão sendo usados por clientes que compraram instâncias on-demand, reservadas ou com outros compromissos contratuais
 - Capacidade ociosa que varia por região, zona de disponibilidade e tipo de máquina
+
 #### O que colocar no spot node?
 
 Eis a questão, o que danado eu vou colocar nesses nodes, se eu não tenho a segurança que eles vão ficar de pé? Se você se perguntou isso, calma meu jovem padawan! 
