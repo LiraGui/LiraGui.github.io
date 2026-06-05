@@ -94,13 +94,13 @@ comments: false
 <p class="mb-3">Docker • Kubernetes • OpenShift • Calico</p>
 
 <h6 class="mb-2">Linguagens &amp; Frameworks</h6>
-<p class="mb-3">Node.js • TypeScript • NestJS • Angular 2+</p>
+<p class="mb-3">Node.js • TypeScript • NestJS • Angular 2+ • Go • Shell</p>
 
 <h6 class="mb-2">Bancos de Dados</h6>
 <p class="mb-3">PostgreSQL • MySQL • Supabase</p>
 
 <h6 class="mb-2">Observabilidade &amp; Mensageria</h6>
-<p class="mb-3">Grafana • Prometheus • Loki • Alloy • OpenTelemetry • BullMQ • RabbitMQ • Socket.io</p>
+<p class="mb-3">Grafana • Prometheus • Beyla • Loki • Alloy • OpenTelemetry • BullMQ • RabbitMQ • Socket.io</p>
 
 <h6 class="mb-2">Metodologias</h6>
 <p class="mb-0">Scrum • Kanban • DevOps • SRE</p>
